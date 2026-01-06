@@ -4,7 +4,7 @@
 export CERTDIR=certificates
 
 echo
-echo "Creating TLS secret 'router-certs' in 'openshift-ingress' namespace..."
+echo "🔐 Creating TLS secret 'router-certs' in 'openshift-ingress' namespace..."
 echo
 
 oc create secret tls router-certs \
@@ -13,7 +13,7 @@ oc create secret tls router-certs \
   -n openshift-ingress
 
 echo
-echo "Patching default ingresscontroller to use the new TLS secret 'router-certs'..."
+echo "🔐 Patching default ingresscontroller to use the new TLS secret 'router-certs'..."
 echo
 
 oc patch ingresscontroller default \
@@ -30,5 +30,5 @@ for POD in $INGRESS_PODS; do
 done
 
 echo
-echo "All ingresscontroller pods are restarted and ready."
+echo "✅ All ingresscontroller pods are restarted and ready."
 echo

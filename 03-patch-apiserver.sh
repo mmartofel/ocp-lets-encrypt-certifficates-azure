@@ -7,7 +7,7 @@ export CERTDIR=certificates
 export LE_API=$(oc whoami --show-server | cut -f 2 -d ':' | cut -f 3 -d '/' | sed 's/-api././')
 
 echo
-echo "Creating TLS secret 'api-certs' in 'openshift-config' namespace..."
+echo "🔐 Creating TLS secret 'api-certs' in 'openshift-config' namespace..."
 echo
 
 oc create secret tls api-certs \
@@ -16,7 +16,7 @@ oc create secret tls api-certs \
   -n openshift-config
 
 echo
-echo "Patching API server to use the new TLS secret 'api-certs'..."
+echo "🔐 Patching API server to use the new TLS secret 'api-certs'..."
 echo
 
 oc patch apiserver cluster \
@@ -33,5 +33,5 @@ for POD in $API_PODS; do
 done
 
 echo
-echo "All API server pods are restarted and ready."
+echo "✅ All API server pods are restarted and ready."
 echo
